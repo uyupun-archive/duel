@@ -1,3 +1,12 @@
+const routerBase =
+  process.env.DEPLOY_ENV === 'GH_PAGES' ?
+    {
+      router: {
+        base: '/xen/'
+      }
+    }
+    :
+    {};
 
 export default {
   mode: 'universal',
@@ -5,7 +14,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: process.env.npm_package_name || 'Duel',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -33,6 +42,8 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    'bootstrap-vue/nuxt',
+    '@nuxtjs/pwa',
   ],
   /*
   ** Build configuration
@@ -43,5 +54,7 @@ export default {
     */
     extend(config, ctx) {
     }
-  }
+  },
+
+  ...routerBase
 }
