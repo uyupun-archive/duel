@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="section">
     <div class="c-h20">
       <router-link to="/complete" class="btn btn-primary c-rotateZ180 d-inline-block">和解する</router-link>
     </div>
     <div class="c-h60">
-      <p class="c-rotateZ90">和解しますか？</p>
+      <p class="c-rotateZ90 c-font30">和解しますか？</p>
     </div>
     <div class="c-h20">
       <router-link to="/complete" class="btn btn-primary c-translateY125 d-inline-block">和解する</router-link>
@@ -17,6 +17,14 @@
 </script>
 
 <style lang="scss" scoped>
+.section {
+  overflow: hidden;
+}
+
+.c-font30 {
+  font-size: 30px;
+}
+
 .c-rotateZ {
   &180 {
     transform: rotateZ(180deg) translateY(-125%);
