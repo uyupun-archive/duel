@@ -15,7 +15,7 @@
         <span>{{ $store.state.playerA }}: </span>
         <span>2:00</span>
       </p>
-      <button class="btn btn-primary" :disabled="isTargetPlayerA" @click="endOpinion()">主張終了</button>
+      <button class="btn btn-primary" :disabled="!isTargetPlayerA" @click="endOpinion()">主張終了</button>
     </div>
 
     <div class="deck c-h70" @click="draw()"></div>
@@ -25,7 +25,7 @@
         <span>{{ $store.state.playerB }}: </span>
         <span>2:00</span>
       </p>
-      <button class="btn btn-primary" :disabled="isTargetPlayerB" @click="endOpinion()">主張終了</button>
+      <button class="btn btn-primary" :disabled="isTargetPlayerA" @click="endOpinion()">主張終了</button>
     </div>
   </div>
 </template>
@@ -34,8 +34,7 @@
 export default {
   data() {
     return {
-      isTargetPlayerA: true,
-      isTargetPlayerB: true,
+      isTargetPlayerA: this.$store.state.isTargetPlayerA,
       canDraw: true,
     }
   },
@@ -43,15 +42,6 @@ export default {
     // ターンの表示
     showTurnModal() {
       this.$bvModal.show('turn-modal')
-      this.canOperatePlayer();
-    },
-    // プレイヤーを操作できる状態にする
-    canOperatePlayer() {
-      if (this.$store.state.turnCount % 2 !== 0) {
-        this.isTargetPlayerA = false;
-        return;
-      }
-      this.isTargetPlayerB = false;
     },
     // ドローする
     draw() {
@@ -65,6 +55,7 @@ export default {
     // 話の終了
     endOpinion() {
       this.$store.commit('setTurnCount', this.$store.state.turnCount);
+      this.$store.commit('setIsTargetPlayerA', !this.isTargetPlayerA);
       this.$router.push('/solve');
     }
   },
