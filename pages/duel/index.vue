@@ -17,6 +17,7 @@
     </div>
   </div>
 </template>
+
 <style lang="scss" scoped>
 .deck {
   cursor: pointer;
