@@ -50,7 +50,7 @@ export default {
     },
     // ドローする
     draw() {
-      if (this.canDraw === true) this.$bvModal.show('card-modal')
+      if (this.canDraw === true) this.$bvModal.show('card-modal');
       if (this.canDraw) {
         this.canDraw = false;
         this.countDown();
