@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{183:function(t,n,e){"use strict";e.r(n);var r=e(41),component=Object(r.a)({},function(){var t=this.$createElement,n=this._self._c||t;return n("div",[this._v("\n  topページ\n  "),n("router-link",{attrs:{to:"/reason"}},[this._v("reasonへ")])],1)},[],!1,null,null,null);n.default=component.exports}}]);
