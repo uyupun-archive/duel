@@ -7,13 +7,14 @@
 
     <b-modal id="card-modal" hide-header hide-footer>
       <p class="text-center">効果: hogehoge</p>
-      <b-button variant="primary" block @click="$bvModal.hide('card-modal')">OK</b-button>
+      <b-button variant="primary" block @click="$bvModal.hide('card-modal'); countDown()">OK</b-button>
     </b-modal>
 
     <div class="reverse c-h15">
       <p class="mb-2">
         <span>{{ $store.state.playerA }}: </span>
-        <span>2:00</span>
+        <span v-if="isTargetPlayerA">30</span>
+        <span v-else>{{ timer }}</span>
       </p>
       <button class="btn btn-primary" :disabled="isTargetPlayerA" @click="endOpinion()">主張終了</button>
     </div>
@@ -23,7 +24,8 @@
     <div class="c-h15 c-translateY50">
       <p class="mb-2">
         <span>{{ $store.state.playerB }}: </span>
-        <span>2:00</span>
+        <span v-if="isTargetPlayerB">30</span>
+        <span v-else>{{ timer }}</span>
       </p>
       <button class="btn btn-primary" :disabled="isTargetPlayerB" @click="endOpinion()">主張終了</button>
     </div>
@@ -37,6 +39,7 @@ export default {
       isTargetPlayerA: true,
       isTargetPlayerB: true,
       canDraw: true,
+      timer: 30
     }
   },
   methods: {
@@ -60,7 +63,10 @@ export default {
     },
     // カウントダウン
     countDown() {
-      // TODO
+      this.timer = 30
+      this.timer = setInterval(() => {
+        this.timer -= 1
+      }, 1000);
     },
     // 話の終了
     endOpinion() {
