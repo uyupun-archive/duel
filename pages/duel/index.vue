@@ -14,7 +14,7 @@
       <p class="mb-2">
         <span>{{ $store.state.playerA }}: </span>
         <span v-if="isTargetPlayerA">30</span>
-        <span v-else>{{ timer }}</span>
+        <span v-else :class="{ 'text-danger': timeLimit }">{{ count }}</span>
       </p>
       <button class="btn btn-primary" :disabled="isTargetPlayerA" @click="endOpinion()">主張終了</button>
     </div>
@@ -25,7 +25,7 @@
       <p class="mb-2">
         <span>{{ $store.state.playerB }}: </span>
         <span v-if="isTargetPlayerB">30</span>
-        <span v-else>{{ timer }}</span>
+        <span v-else :class="{ 'text-danger': timeLimit }">{{ count }}</span>
       </p>
       <button class="btn btn-primary" :disabled="isTargetPlayerB" @click="endOpinion()">主張終了</button>
     </div>
@@ -39,8 +39,12 @@ export default {
       isTargetPlayerA: true,
       isTargetPlayerB: true,
       canDraw: true,
-      timer: 30
+      count: 30,
+      timeLimit: false
     }
+  },
+  beforeDestroy() {
+    this.clearTimer();
   },
   methods: {
     // ターンの表示
@@ -63,10 +67,14 @@ export default {
     },
     // カウントダウン
     countDown() {
-      this.timer = 30
-      this.timer = setInterval(() => {
-        this.timer -= 1
+      this.count = 30
+      this.count = setInterval(() => {
+        this.count -= 1
+        if (this.count < 0) this.timeLimit = true
       }, 1000);
+    },
+    clearTimer() {
+      clearInterval(this.count);
     },
     // 話の終了
     endOpinion() {
