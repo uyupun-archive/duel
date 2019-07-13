@@ -16,4 +16,7 @@ export const mutations = {
   setPlayerB (state, player) {
     state.playerB = player
   },
+  setTurnCount (state, count) {
+    state.turnCount = ++count;
+  }
 };

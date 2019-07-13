@@ -64,6 +64,7 @@ export default {
     },
     // 話の終了
     endOpinion() {
+      this.$store.commit('setTurnCount', this.$store.state.turnCount);
       this.$router.push('/solve');
     }
   },
