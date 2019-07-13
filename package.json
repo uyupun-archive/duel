@@ -8,12 +8,15 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "build:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt build && rm -rf docs && mv dist docs",
+    "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate && rm -rf docs && mv dist docs"
   },
   "dependencies": {
     "@nuxtjs/pwa": "^3.0.0-beta.16",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.26",
+    "cross-env": "^5.2.0",
     "nuxt": "^2.0.0",
     "vue": "^2.6.10"
   },

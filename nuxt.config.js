@@ -2,14 +2,15 @@ const routerBase =
   process.env.DEPLOY_ENV === 'GH_PAGES' ?
     {
       router: {
-        base: '/xen/'
+        base: '/duel/'
       }
     }
     :
-    {};
+      {};
 
 export default {
   mode: 'universal',
+
   /*
   ** Headers of the page
   */
@@ -24,20 +25,24 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+
   /*
   ** Customize the progress-bar color
   */
   loading: { color: '#fff' },
+
   /*
   ** Global CSS
   */
   css: [
   ],
+
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
   ],
+
   /*
   ** Nuxt.js modules
   */
@@ -45,6 +50,7 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/pwa',
   ],
+
   /*
   ** Build configuration
   */

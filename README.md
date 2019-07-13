@@ -7,3 +7,9 @@ Card game to solve QUARREL 🖕( ◠‿◠ )🖕
 $ yarn install
 $ yarn dev
 ```
+
+### Build
+
+```bash
+$ npm run generate:gh-pages
+```
