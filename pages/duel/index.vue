@@ -7,14 +7,13 @@
 
     <b-modal id="card-modal" hide-header hide-footer>
       <p class="text-center">効果: hogehoge</p>
-      <b-button variant="primary" block @click="$bvModal.hide('card-modal'); countDown()">OK</b-button>
+      <b-button variant="primary" block @click="$bvModal.hide('card-modal')">OK</b-button>
     </b-modal>
 
     <div class="reverse c-h15">
       <p class="mb-2">
         <span>{{ $store.state.playerA }}: </span>
-        <span v-if="isTargetPlayerA">30</span>
-        <span v-else :class="{ 'text-danger': timeLimit }">{{ count }}</span>
+        <span v-if="isTargetPlayerA" :class="{ 'text-danger': timeLimit }">{{ count }}</span>
       </p>
       <button class="btn btn-primary" :disabled="!isTargetPlayerA" @click="endOpinion()">主張終了</button>
     </div>
@@ -24,8 +23,7 @@
     <div class="c-h15 c-translateY50">
       <p class="mb-2">
         <span>{{ $store.state.playerB }}: </span>
-        <span v-if="isTargetPlayerB">30</span>
-        <span v-else :class="{ 'text-danger': timeLimit }">{{ count }}</span>
+        <span v-if="!isTargetPlayerA" :class="{ 'text-danger': timeLimit }">{{ count }}</span>
       </p>
       <button class="btn btn-primary" :disabled="isTargetPlayerA" @click="endOpinion()">主張終了</button>
     </div>
@@ -54,15 +52,15 @@ export default {
     draw() {
       if (this.canDraw === true) this.$bvModal.show('card-modal')
       this.canDraw = false;
+      this.countDown();
     },
     // カウントダウン
     countDown() {
-      this.count = 30
       this.count = setInterval(() => {
-        this.count -= 1
-        if (this.count < 0) this.timeLimit = true
+        if (--this.count < 0) this.timeLimit = true;
       }, 1000);
     },
+    // タイマーの削除
     clearTimer() {
       clearInterval(this.count);
     },
