@@ -1,0 +1,19 @@
+{
+  "name": "duel",
+  "version": "1.0.0",
+  "description": "Card game to solve QUARREL 🖕( ◠‿◠ )🖕",
+  "author": "Kazuki Tobita",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
