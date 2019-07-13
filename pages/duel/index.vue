@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="section">
     <div class="reverse c-h15">
       <p class="mb-2">2:00</p>
       <router-link to="/solve">
@@ -19,6 +19,10 @@
 </template>
 
 <style lang="scss" scoped>
+.section {
+  overflow: hidden;
+}
+
 .deck {
   cursor: pointer;
   margin: 0 auto;
