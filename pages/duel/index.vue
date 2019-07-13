@@ -51,8 +51,10 @@ export default {
     // ドローする
     draw() {
       if (this.canDraw === true) this.$bvModal.show('card-modal')
-      this.canDraw = false;
-      this.countDown();
+      if (this.canDraw) {
+        this.canDraw = false;
+        this.countDown();
+      }
     },
     // カウントダウン
     countDown() {
