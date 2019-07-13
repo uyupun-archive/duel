@@ -12,7 +12,7 @@
 
     <div class="reverse c-h15">
       <p class="mb-2">
-        <span>プレイヤーA: </span>
+        <span>{{ $store.state.playerA }}: </span>
         <span>2:00</span>
       </p>
       <button class="btn btn-primary" :disabled="isTargetPlayerA" @click="endOpinion()">主張終了</button>
@@ -22,7 +22,7 @@
 
     <div class="c-h15 c-translateY50">
       <p class="mb-2">
-        <span>プレイヤーB: </span>
+        <span>{{ $store.state.playerB }}: </span>
         <span>2:00</span>
       </p>
       <button class="btn btn-primary" :disabled="isTargetPlayerB" @click="endOpinion()">主張終了</button>
