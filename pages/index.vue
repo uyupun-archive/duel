@@ -1,7 +1,7 @@
 <template>
   <div>
+    <img src="@/assets/logo.png" alt="ロゴ" class="c-logo">
     <h1 class="c-h1">Duel</h1>
-    <div class="mb-4">ロゴ</div>
     <input type="text" placeholder="争いの種" class="form-control mb-4" v-model="fightName" />
     <div class="row mb-5">
       <div class="col pr-2">
@@ -45,7 +45,28 @@ export default {
 
 <style lang="scss" scoped>
 .c-h1 {
-  padding-top: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+  font-size: 50px;
+  &::first-letter {
+    color: #C00000;
+    font-size: 60px;
+  }
+}
+
+.c-logo {
+  width: 50%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  transform: rotate(0);
+  animation: logo 5s infinite linear;
+}
+
+@keyframes logo {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
