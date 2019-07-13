@@ -17,7 +17,7 @@
     </div>
   </div>
 </template>
-<style>
+<style lang="scss" scoped>
 .deck {
   cursor: pointer;
   margin: 0 auto;
@@ -28,6 +28,7 @@
   border: 8px solid #333333;
   background: repeating-linear-gradient(45deg, #dc143c 0px, #dc143c 15px, #fffafa 15px, #fffafa 30px);
 }
+
 .reverse {
   transform:rotate(180deg);
 }
