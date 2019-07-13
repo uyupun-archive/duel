@@ -1,5 +1,9 @@
 export const state = () => ({
-  fightName: ''
+  fightName: '',
+  playerA: '',
+  playerB: '',
+  targetPlayer: '',
+  turnCount: 1
 });
 
 export const mutations = {
