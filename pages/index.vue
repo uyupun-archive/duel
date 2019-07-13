@@ -1,8 +1,16 @@
 <template>
   <div>
     <h1 class="c-h1">Duel</h1>
-    <div class="c-logo">ロゴ</div>
-    <input type="text" placeholder="争いの種" class="form-control c-textBox" v-model="fightName" />
+    <div class="mb-4">ロゴ</div>
+    <input type="text" placeholder="争いの種" class="form-control mb-4" v-model="fightName" />
+    <div class="row mb-5">
+      <div class="col pr-2">
+        <input type="text" class="form-control" placeholder="プレイヤーA">
+      </div>
+      <div class="col pl-2">
+        <input type="text" class="form-control" placeholder="プレイヤーB">
+      </div>
+    </div>
     <button type="button" class="btn btn-primary" :disabled="validateFightName()" @click="standby()">スタンバイ</button>
   </div>
 </template>
@@ -31,13 +39,5 @@ export default {
 .c-h1 {
   padding-top: 30px;
   margin-bottom: 50px;
-}
-
-.c-logo {
-  margin-bottom: 30px;
-}
-
-.c-textBox {
-  margin-bottom: 30px;
 }
 </style>
