@@ -1,5 +1,10 @@
 <template>
   <div>
+    <b-modal id="turn-modal" hide-header hide-footer>
+      <h3 class="h3 text-center">1ターン目</h3>
+      <b-button variant="primary" block @click="$bvModal.hide('turn-modal')">OK</b-button>
+    </b-modal>
+
     <div class="reverse">
       <p>2:00</p>
       <router-link to="/solve">
@@ -17,6 +22,19 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    showTurnModal() {
+      this.$bvModal.show('turn-modal')
+    }
+  },
+  mounted() {
+    this.showTurnModal();
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .deck {
