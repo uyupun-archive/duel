@@ -55,6 +55,7 @@ export default {
 
 .c-logo {
   width: 50%;
+  max-width: 150px;
   margin-top: 30px;
   margin-bottom: 30px;
   transform: rotate(0);
