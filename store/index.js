@@ -22,4 +22,11 @@ export const mutations = {
   setTurnCount (state, count) {
     state.turnCount = ++count;
   },
-};
+  setInitialize (state) {
+    state.fightName = '';
+    state.playerA = '';
+    state.playerB = '';
+    state.isTargetPlayerA = true;
+    state.turnCount = 1;
+  }
+}
