@@ -40,25 +40,26 @@ export default {
       timer: null,
       timeLimit: false,
       cards: [
-        '「これ」という単語を使うな',
-        '「えっと」という単語を使うな',
-        '一人称を普段使わないものにして話す',
-        'あなたが思う「関西人」の口調で話す',
-        '何かの歌にのせて替え歌で',
-        '英語っぽく日本語で話す',
-        '何かのモノマネをしながら話す',
-        '会話中にどこかで、生き物の鳴き真似をする',
-        '限界まで低い声で',
-        '限界まで高い声で',
-        '鼻をつまんで話す'
+        '🤖「「これ」という単語を使わないで」',
+        '🤖「「えっと」という単語を使わないで」',
+        '🤖「一人称を普段使わないものにして話して」',
+        '🤖「あなたが思う「関西人」の口調で話して」',
+        '🤖「何かの歌にのせて喋って」',
+        '🤖「英語っぽく日本語で喋って」',
+        '🤖「何かのモノマネをしながら喋って」',
+        '🤖「会話のどこかで生き物の鳴き真似をして」',
+        '🤖「限界まで低い声で喋って」',
+        '🤖「限界まで高い声で喋って」',
+        '🤖「鼻をつまんで喋って」',
       ]
     }
   },
   created() {
-    for (let m = this.cards.length - 1; m > 0; m--) {
-      const i = Math.floor(Math.random() * m);
-      [this.cards[m], this.cards[i]] = [this.cards[i], this.cards[m]];
-    }
+    this.shuffleCards();
+    this.rotatePatramp();
+  },
+  mounted() {
+    this.showTurnModal();
   },
   beforeDestroy() {
     this.clearTimer();
@@ -80,7 +81,7 @@ export default {
     countDown() {
       this.timer = setInterval(() => {
         if (--this.count < 0) this.timeLimit = true;
-        // if (this.timeLimit) this.rotatePatramp();
+        if (this.timeLimit) this.rotatePatramp();
       }, 1000);
     },
     // タイマーの削除
@@ -93,23 +94,23 @@ export default {
       this.$store.commit('setIsTargetPlayerA', !this.isTargetPlayerA);
       this.$router.push('/solve');
     },
+    // カードのシャッフル
+    shuffleCards() {
+      for (let m = this.cards.length - 1; m > 0; m--) {
+        const i = Math.floor(Math.random() * m);
+        [this.cards[m], this.cards[i]] = [this.cards[i], this.cards[m]];
+      }
+    },
     // カードをセット
     setCard() {
-      const index = this.$store.state.turnCount - 1 % 11
+      const index = this.$store.state.turnCount - 1 % this.cards.length;
       return this.cards[index]
     },
     // パトランプの制御
     rotatePatramp() {
-      navigator.bluetooth.requestDevice({
-        acceptAllDevices:true,
-      }).then(d => {
-        console.log(d);
-      })
+      //
     }
   },
-  mounted() {
-    this.showTurnModal();
-  }
 }
 </script>
 
