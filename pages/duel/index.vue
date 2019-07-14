@@ -37,7 +37,8 @@ export default {
       isTargetPlayerA: this.$store.state.isTargetPlayerA,
       canDraw: true,
       count: 30,
-      timeLimit: false
+      timer: null,
+      timeLimit: false,
     }
   },
   beforeDestroy() {
@@ -58,19 +59,28 @@ export default {
     },
     // カウントダウン
     countDown() {
-      this.count = setInterval(() => {
+      this.timer = setInterval(() => {
         if (--this.count < 0) this.timeLimit = true;
+        // if (this.timeLimit) this.rotatePatramp();
       }, 1000);
     },
     // タイマーの削除
     clearTimer() {
-      clearInterval(this.count);
+      clearInterval(this.timer);
     },
     // 話の終了
     endOpinion() {
       this.$store.commit('setTurnCount', this.$store.state.turnCount);
       this.$store.commit('setIsTargetPlayerA', !this.isTargetPlayerA);
       this.$router.push('/solve');
+    },
+    // パトランプの制御
+    rotatePatramp() {
+      navigator.bluetooth.requestDevice({
+        acceptAllDevices:true,
+      }).then(d => {
+        console.log(d);
+      })
     }
   },
   mounted() {
