@@ -66,6 +66,6 @@ export default {
   ...routerBase,
 
   axios: {
-    baseURL: 'http://',
+    baseURL: 'http://192.168.43.43/',
   }
 }
