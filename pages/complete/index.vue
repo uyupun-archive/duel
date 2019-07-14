@@ -7,12 +7,21 @@
         <div class="star-cover is-left"></div>
       </div>
     </div>
-    <img src="@/assets/family_isan_happy.png" alt="和解" class="c-solve" />
-    <router-link to="/">
-      <button type="button" class="btn btn-primary btn-position">トップへ</button>
-    </router-link>
+    <img src="@/assets/family_isan_happy.png" alt="和解" class="c-solve">
+    <button type="button" class="btn btn-primary btn-position" @click="initialize">トップへ</button>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    initialize() {
+      this.$store.commit('setInitialize');
+      this.$router.push('/')
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .section {
