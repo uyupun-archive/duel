@@ -6,7 +6,7 @@
     </b-modal>
 
     <b-modal id="card-modal" hide-header hide-footer>
-      <p class="text-center">効果: hogehoge</p>
+      <p class="text-center">{{ setCard() }}</p>
       <b-button variant="primary" block @click="$bvModal.hide('card-modal')">OK</b-button>
     </b-modal>
 
@@ -37,7 +37,26 @@ export default {
       isTargetPlayerA: this.$store.state.isTargetPlayerA,
       canDraw: true,
       count: 30,
-      timeLimit: false
+      timeLimit: false,
+      cards: [
+        '「これ」という単語を使うな',
+        '「えっと」という単語を使うな',
+        '一人称を普段使わないものにして話す',
+        'あなたが思う「関西人」の口調で話す',
+        '何かの歌にのせて替え歌で',
+        '英語っぽく日本語で話す',
+        '何かのモノマネをしながら話す',
+        '会話中にどこかで、生き物の鳴き真似をする',
+        '限界まで低い声で',
+        '限界まで高い声で',
+        '鼻をつまんで話す'
+      ]
+    }
+  },
+  created() {
+    for (let m = this.cards.length - 1; m > 0; m--) {
+      const i = Math.floor(Math.random() * m);
+      [this.cards[m], this.cards[i]] = [this.cards[i], this.cards[m]];
     }
   },
   beforeDestroy() {
@@ -71,6 +90,11 @@ export default {
       this.$store.commit('setTurnCount', this.$store.state.turnCount);
       this.$store.commit('setIsTargetPlayerA', !this.isTargetPlayerA);
       this.$router.push('/solve');
+    },
+    // カードをセット
+    setCard() {
+      const index = this.$store.state.turnCount - 1 % 11
+      return this.cards[index]
     }
   },
   mounted() {
