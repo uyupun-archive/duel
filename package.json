@@ -13,6 +13,7 @@
     "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate && rm -rf docs && mv dist docs"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.5.4",
     "@nuxtjs/pwa": "^3.0.0-beta.16",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.26",

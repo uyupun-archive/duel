@@ -49,6 +49,7 @@ export default {
   modules: [
     'bootstrap-vue/nuxt',
     '@nuxtjs/pwa',
+    '@nuxtjs/axios'
   ],
 
   /*
@@ -62,5 +63,9 @@ export default {
     }
   },
 
-  ...routerBase
+  ...routerBase,
+
+  axios: {
+    baseURL: 'http://',
+  }
 }
