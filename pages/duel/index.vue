@@ -7,7 +7,7 @@
 
     <b-modal id="card-modal" hide-header hide-footer>
       <p class="text-center">{{ setCard() }}</p>
-      <b-button variant="primary" block @click="$bvModal.hide('card-modal')">OK</b-button>
+      <b-button variant="primary" block @click="$bvModal.hide('card-modal'); addCardContent()">OK</b-button>
     </b-modal>
 
     <div class="reverse c-h15">
@@ -18,7 +18,10 @@
       <button class="btn btn-primary" :disabled="!isTargetPlayerA" @click="endOpinion()">主張終了</button>
     </div>
 
-    <div class="deck c-h70" @click="draw()"></div>
+    <div class="deck c-h70" @click="draw()">
+      <div class="card-contents card-right" :class="{ 'card-rotate': isTargetPlayerA }">{{ cardContent }}</div>
+      <div class="card-contents card-left" :class="{ 'card-rotate': isTargetPlayerA }">{{ cardContent }}</div>
+    </div>
 
     <div class="c-h15 c-translateY50">
       <p class="mb-2">
@@ -51,7 +54,8 @@ export default {
         '🤖「限界まで低い声で喋って」',
         '🤖「限界まで高い声で喋って」',
         '🤖「鼻をつまんで喋って」',
-      ]
+      ],
+      cardContent: ""
     }
   },
   created() {
@@ -74,7 +78,6 @@ export default {
       if (this.canDraw === true) this.$bvModal.show('card-modal');
       if (this.canDraw) {
         this.canDraw = false;
-        this.countDown();
       }
     },
     // カウントダウン
@@ -96,6 +99,7 @@ export default {
     },
     // カードのシャッフル
     shuffleCards() {
+      if (this.$store.state.turnCount !== 1) return;
       for (let m = this.cards.length - 1; m > 0; m--) {
         const i = Math.floor(Math.random() * m);
         [this.cards[m], this.cards[i]] = [this.cards[i], this.cards[m]];
@@ -105,6 +109,11 @@ export default {
     setCard() {
       const index = this.$store.state.turnCount - 1 % this.cards.length;
       return this.cards[index]
+    },
+    // カード内容を追加
+    addCardContent() {
+      this.countDown();
+      this.cardContent = this.setCard()
     },
     // パトランプの制御
     rotatePatramp() {
@@ -120,6 +129,7 @@ export default {
 }
 
 .deck {
+  position: relative;
   cursor: pointer;
   margin: 0 auto;
   width: 100%;
@@ -146,6 +156,27 @@ export default {
 .c-translateY {
   &50 {
     transform: translateY(10%);
+  }
+}
+
+.card {
+  &-contents {
+    position: absolute;
+    background-color: white;
+    writing-mode: vertical-rl;
+    text-align: left;
+    font-size: 20px;
+  }
+  &-right {
+    top: 0;
+    right: 0;
+    margin: 20px 20px 80px;
+  }
+  &-left {
+    bottom: 0;
+    left: 0;
+    margin: 80px 20px 20px;
+    transform: rotate(180deg);
   }
 }
 </style>
