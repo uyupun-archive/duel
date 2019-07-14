@@ -48,7 +48,7 @@ export default {
   */
   modules: [
     'bootstrap-vue/nuxt',
-    '@nuxtjs/pwa',
+    ['@nuxtjs/pwa', { icon: false }],
     '@nuxtjs/axios'
   ],
 
