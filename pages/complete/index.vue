@@ -1,5 +1,6 @@
 <template>
   <div class="section">
+    <img src="@/assets/family_isan_happy.PNG" alt="和解" class="c-solve">
     <h2 class="h2">和解成立！</h2>
     <router-link to="/">
       <button type="button" class="btn btn-primary btn-position">トップへ</button>
@@ -12,6 +13,14 @@
   height: 100vh;
   overflow: hidden;
   position: relative;
+}
+
+.c-solve {
+  width: 50%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  transform: rotate(0);
+  animation: logo 5s infinite linear;
 }
 
 .h2 {
