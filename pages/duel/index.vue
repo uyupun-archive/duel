@@ -37,6 +37,7 @@ export default {
       isTargetPlayerA: this.$store.state.isTargetPlayerA,
       canDraw: true,
       count: 30,
+      timer: null,
       timeLimit: false,
       cards: [
         '「これ」という単語を使うな',
@@ -77,13 +78,14 @@ export default {
     },
     // カウントダウン
     countDown() {
-      this.count = setInterval(() => {
+      this.timer = setInterval(() => {
         if (--this.count < 0) this.timeLimit = true;
+        // if (this.timeLimit) this.rotatePatramp();
       }, 1000);
     },
     // タイマーの削除
     clearTimer() {
-      clearInterval(this.count);
+      clearInterval(this.timer);
     },
     // 話の終了
     endOpinion() {
@@ -95,6 +97,14 @@ export default {
     setCard() {
       const index = this.$store.state.turnCount - 1 % 11
       return this.cards[index]
+    },
+    // パトランプの制御
+    rotatePatramp() {
+      navigator.bluetooth.requestDevice({
+        acceptAllDevices:true,
+      }).then(d => {
+        console.log(d);
+      })
     }
   },
   mounted() {
