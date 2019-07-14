@@ -60,7 +60,6 @@ export default {
   },
   created() {
     this.shuffleCards();
-    this.rotatePatramp();
   },
   mounted() {
     this.showTurnModal();
@@ -117,7 +116,7 @@ export default {
     },
     // パトランプの制御
     rotatePatramp() {
-      //
+      this.$axios.get('/');
     }
   },
 }
